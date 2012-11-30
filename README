@@ -1,0 +1,30 @@
+This was programmed on the TI83SE during my Sophomore year of high school.
+
+The idea was from a friend, to make a minesweeper program. I didn't realize
+it at the time, but the algorithm here is an iterative version of 
+FloodFill, which utilizes Lists (arrays on the 83) to keep track of 
+which mines need to be flipped.
+
+It uses an external library for the 83 called omnicalc which allows the 
+calculator to draw pictures easier. The pictures are first drawn as
+the game "loads" and then stored to memory. They are then treated like
+a sprite sheet. Any call to a Real( command is likely utilizing this
+library.
+
+This was programmed on the calculator. It originally did not have
+the automatic flipping of tiles around (the floodfill part) and only
+generated and played minesweeper maps. Eventually support was added for
+this though, and a changelog was also added.
+
+Data is stored by saving it all to a custom list and then writing that list
+to the Archive memory. There's a value in the list that tracks the version
+number, and that is how the changelog works. There's also a value
+keeping track of whether or not the omnicalc notice and check has been
+performed, and if not where to get it at. Preferences and high scores
+are stored too.
+
+Automatic tile flipping is a little slow. You can play the program
+by loading it onto a TI83 Debugger emulator, which TI supplies for
+free on their website.
+
+

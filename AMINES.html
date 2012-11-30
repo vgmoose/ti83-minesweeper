@@ -1,0 +1,487 @@
+::"Everybody knows it!
+:AxesOff
+:0→G:0→H:0→R
+:SetUpEditor ∟θMINE
+:If dim(∟θMINE)=0:Then
+:¦ 10→dim(∟θMINE)
+:¦ 27→∟θMINE(10)
+:¦ 2→∟θMINE(3)
+:¦ 999999→∟θMINE(4)
+:¦ 1→∟θMINE(9)
+:End
+:If dim(∟θMINE)=9:Then
+:¦ ClrHome
+:¦ 10→dim(∟θMINE)
+:¦ Disp "","Program updated!","","New stuffs:","  -Auto-flip","  -Faster setup","  -Added secret",""
+:¦ 0→K:While K≠21 and K≠105
+:¦ ¦ getKey→K
+:¦ End
+:¦ 1→∟θMINE(9)
+:¦ 27→∟θMINE(10)
+:¦ Disp "","Auto-flip has","been enabled.","","Turn it off in","config if you","don't like it.",""
+:¦ 0→K
+:¦ While K≠21 and K≠105
+:¦ ¦ getKey→K
+:¦ End
+:End
+:10→dim(∟θMINE
+:If ∟θMINE(2)=0:Then
+:¦ ClrHome
+:¦ Disp "This PRGM uses","Pic0 and [A]/[B]","If there's","important info","there, move it","to another VAR","or it'll be"
+:¦ Output(8,1,"deleted!
+:¦ 0→K
+:¦ While K≠21 and K≠105
+:¦ ¦ getKey→K
+:¦ End
+:¦ Disp "","","Press 1 to","confirm the","deletion of the","current VARS:","  *Pic0","  *[A]","  *[B]
+:¦ 0→K
+:¦ While K≠92
+:¦ ¦ getKey→K
+:¦ End
+:¦ Disp "","This notice and","confirmation","will not take","place next time.","",""
+:¦ 0→K
+:¦ 1→∟θMINE(2)
+:¦ While K≠21 and K≠105
+:¦ ¦ getKey→K
+:¦ End
+:¦ Disp "","However, those","VARS will be","deleted every","time this PRGM","is run.",""
+:¦ 0→K
+:¦ While K≠21 and K≠105
+:¦ ¦ getKey→K
+:¦ End
+:¦ Disp "","...So don't","store anything","important in","them!","",""
+:¦ 0→K
+:¦ While K≠21 and K≠105
+:¦ ¦ getKey→K
+:¦ End
+:End
+:ClrDraw
+:Text(‾1,8*7,0,"      Loading...
+:For(A,0,15
+:¦ Pxl-On(0,A)
+:End
+:For(Y,1,6
+:¦ Pxl-On(Y,0
+:End
+:For(Y,1,6
+:¦ For(X,7,15
+:¦ ¦ Pxl-On(Y,X
+:¦ End:End
+:For(X,0,15
+:¦ Pxl-On(7,X
+:End
+:Text(0,16,"F
+:Text(0,24,"?
+:StorePic Pic0
+:Goto LL
+:Lbl SE
+:ClrDraw
+:ClrHome
+:Disp "Setting up..."
+:{8,12→dim([B]
+:0→V
+:If G=0:12→G
+:If H=0:8→H
+:If G=500:5→G
+:If H=500:5→H
+:If R=0:7→R
+:Output(3,9,"config"
+:Output(4,7,"----------"
+:Output(5,7,"field:"
+:If R<100
+    :Output(6,8,"seed:"
+    :If R>100
+    :Output(6,7,"mines:"
+    :If ∟θMINE(9)=1:Output(7,9,"normal
+    :If ∟θMINE(9)=2:Output(7,9,"no grid
+    :If ∟θMINE(9)=3:Output(7,9,"all grid
+    :If ∟θMINE(9)=4:Output(7,9,"inverse
+    :If ∟θMINE(10)=27:Output(4,2,"af
+    :Output(5,13,H
+    :Output(5,14,"x
+    :Output(5,15,G
+    :Output(6,13,R(R<100)+(R>100)(R-100)
+        :If W=π:Goto ST
+        :Goto AR
+        :For(Y,1,H
+        :¦ For(X,1,G
+        :¦ ¦ randInt(R,10-(R>100))→[B](Y,X)
+        :¦ ¦ V+1→V
+        :¦ ¦ Output(8,1,int(V/800*100
+        :¦ End:End
+        :Lbl AR
+        :Fill(0,[B])
+        :If R<100:int(((1/R)GH)+randInt(‾3,3))→R
+            :If R>100
+            :R-100→R
+            :While R≠0
+            :¦ R-1→R
+            :¦ randInt(1,H)→Y
+            :¦ randInt(1,G)→X
+            :¦ If [B](Y,X)=10:R+1→R
+            :¦ 10→[B](Y,X)
+            :¦ V+1→V
+            :¦ Output(8,1,int(V/800*100)
+            :End
+            :End
+            :0→C
+            :0→T
+            :For(X,1,G
+            :¦ For(Y,1,H
+            :¦ ¦ If [B](Y,X)≠10:Then
+            :¦ ¦ ¦ For(B,‾(X≠1),(X≠G
+            :¦ ¦ ¦ ¦ For(A,‾(Y≠1),(Y≠H
+            :¦ ¦ ¦ ¦ ¦ If [B](Y+A,X+B)=10:C+1→C
+            :¦ ¦ ¦ ¦ ¦ V+1→V
+            :¦ ¦ ¦ ¦ ¦ Output(8,1,int(V/800*100
+            :¦ ¦ ¦ ¦ End:End
+            :¦ ¦ ¦ C→[B](Y,X)
+            :¦ ¦ ¦ 0→C
+            :¦ ¦ End
+            :¦ ¦ If [B](Y,X)=10:1+T→T
+            :¦ End:End
+            :Goto ST
+            :Lbl LL
+            :0→θ:0→W
+            :∟θMINE(6)→G
+            :∟θMINE(7)→H
+            :∟θMINE(8)→R
+            :ClrHome
+            :Disp "","  Minesweeper "," --------------",""," 1) Play Game"," 2) Configure"," 3) About
+            :Lbl LM
+            :0→K
+            :Repeat max(K={92,93,94,82
+            :¦ getKey→K
+            :End
+            :If K=82:Then:If θ=3:Then:π→W:Goto SE:End:Output(8,1," 4) Cheat!":3→θ:Goto LM:End
+            :Disp ""
+            :If K=92:Then
+            :¦ If ∟θMINE(1)=0:Then
+            :¦ ¦ Disp "","","","","You need to","install OmniCalc","in order to use","this program","",""
+            :¦ ¦ 0→K
+            :¦ ¦ While K≠21 and K≠105
+            :¦ ¦ ¦ getKey→K
+            :¦ ¦ End
+            :¦ ¦ Disp "","A test will","now be issued","to ensure that","you have it.","",""
+            :¦ ¦ 0→K
+            :¦ ¦ While K≠21 and K≠105
+            :¦ ¦ ¦ getKey→K
+            :¦ ¦ End
+            :¦ ¦ Disp "","If you don't,","get it online","at ticalc.org","or from a friend","",""
+            :¦ ¦ 0→K
+            :¦ ¦ While K≠21 and K≠105
+            :¦ ¦ ¦ getKey→K
+            :¦ ¦ End
+            :¦ ¦ Disp "You failed the","test..."
+            :¦ ¦ Output(1,1,"G
+            :¦ ¦ Output(5,7,"^^^
+            :¦ ¦ real(29,"H
+            :¦ ¦ 1→∟θMINE(1)
+            :¦ ¦ Disp "","You passed!","","","","",""
+            :¦ ¦ 0→K
+            :¦ ¦ While K≠21 and K≠105
+            :¦ ¦ ¦ getKey→K
+            :¦ ¦ End
+            :¦ ¦ Disp "","This check","will not be","performed the","next time you ","play Minesweeper",""
+            :¦ ¦ 0→K
+            :¦ ¦ While K≠21 and K≠105
+            :¦ ¦ ¦ getKey→K
+            :¦ ¦ End
+            :¦ ¦ Disp "","...So make","sure it's still","installed next","time.","",""
+            :¦ ¦ 0→K
+            :¦ ¦ While K≠21 and K≠105
+            :¦ ¦ ¦ getKey→K
+            :¦ ¦ End
+            :¦ End
+            :¦ Goto SE
+            :¦ Lbl ST
+            :¦ 0→F:0→V:0→Q:0→L
+            :¦ [B]→[A]
+            :¦ 0→A
+            :¦ ClrDraw
+            :¦ Lbl G
+            :¦ 0→S
+            :¦ If ∟θMINE(9)=2 or ∟θMINE(9)=4:8→S
+            :¦ If A=8:0→S
+            :¦ If A≠8
+            :¦ real(20,0,0,0,8,8,0,0
+            :¦ For(X,0,8*(G-1),8
+            :¦ ¦ For(Y,0,8*(H-1),8
+            :¦ ¦ ¦ real(20,0,A,S,8,8,X,Y
+            :¦ ¦ End:End
+            :¦ If A=8:Then
+            :¦ ¦ 0→K
+            :¦ ¦ While K≠21 and K≠105:getKey→K:End
+            :¦ ¦ If T≠F and GH-T≠L:Then
+            :¦ ¦ ¦ Text(‾1,0,0,"GAME OVER       "
+            :¦ ¦ ¦ 0→K
+            :¦ ¦ ¦ While K≠21 and K≠105 and K≠45
+            :¦ ¦ ¦ ¦ getKey→K
+            :¦ ¦ ¦ End
+            :¦ ¦ ¦ Text(‾1,14,0,"Try again?      "
+            :¦ ¦ ¦ ClrHome
+            :¦ ¦ ¦ Disp "","","Try again?","","  1) Yes!","  2) NO"
+            :¦ ¦ ¦ 0→K
+            :¦ ¦ ¦ While K≠92 and K≠93 and K≠21 and K≠31
+            :¦ ¦ ¦ ¦ getKey→K
+            :¦ ¦ ¦ End
+            :¦ ¦ ¦ If K=92 or K=21:Goto ST
+            :¦ ¦ ¦ If K=93 or K=31:Return
+            :¦ ¦ End
+            :¦ End
+            :¦ If T=F and Q=0 or GH-T=L:Then
+            :¦ ¦ Text(‾1,0,0," YOU SIR/MADAM  "
+            :¦ ¦ Text(‾1,8,0,"  ARE A WINNER! "
+            :¦ ¦ 0→K
+            :¦ ¦ While K≠21 and K≠105
+            :¦ ¦ ¦ getKey→K
+            :¦ ¦ End
+            :¦ ¦ ∟θMINE(5)+1→∟θMINE(5)
+            :¦ ¦ ClrHome
+            :¦ ¦ Disp "","That means you","have won like,","    times!","","",""
+            :¦ ¦ Output(4,1,∟θMINE(5)
+            :¦ ¦ 0→K
+            :¦ ¦ While K≠21 and K≠105
+            :¦ ¦ ¦ getKey→K
+            :¦ ¦ End
+            :¦ ¦ Disp "","This game took","you","time-units!","","",""
+            :¦ ¦ Output(3,5,V
+            :¦ ¦ 0→K
+            :¦ ¦ While K≠21 and K≠105
+            :¦ ¦ ¦ getKey→K
+            :¦ ¦ End
+            :¦ ¦ If V<∟θMINE(4) and G=12 and H=8 and W≠π and ∟θMINE(8)=7
+                :¦ ¦ Then
+                :¦ ¦ ¦ Disp "","","That's a new","record!","",""
+                :¦ ¦ ¦ V→∟θMINE(4)
+                :¦ ¦ End
+                :¦ ¦ 0→K
+                :¦ ¦ While K≠21 and K≠105
+                :¦ ¦ ¦ getKey→K
+                :¦ ¦ End
+                :¦ ¦ Return
+                :¦ End
+                :¦ int(G/2)8→X:int(H/2)8→Y
+                :¦ 0→E
+                :¦ If ∟θMINE(9)=1 or ∟θMINE(9)=4:1→E
+                :¦ Lbl A
+                :¦ If A=3:Then
+                :¦ ¦ ClrHome
+                :¦ ¦ Disp "","Number of mines",T,"Current time",V,"Record time",∟θMINE(4)
+                :¦ ¦ 0→K
+                :¦ ¦ While K≠21 and K≠105 and K≠15
+                :¦ ¦ ¦ getKey→K
+                :¦ ¦ End
+                :¦ ¦ If K=15:Then
+                :¦ ¦ ¦ Disp "","Mines flagged",F,"Incorrect flags",Q
+                :¦ ¦ ¦ 0→K
+                :¦ ¦ ¦ If Q≠0:π→W
+                :¦ ¦ ¦ While K≠21 and K≠105:getKey→K:End
+                :¦ ¦ End
+                :¦ ¦ 0→A
+                :¦ End
+                :¦ If A=8:Goto G
+                :¦ real(20,0,0,0,8,8,X,Y)
+                :¦ 0→K
+                :¦ {24,25,34,26,21,31,41,42→L1
+                :¦ If ∟θMINE(6)=500:{21,31,41,42,51,52,53,54,55,61,62,63,64,65,71,72,73,74,75,81,82,83,84,85,91,92,93,94,95→L1
+                :¦ Repeat max(K=L1
+                :¦ ¦ getKey→K
+                :¦ ¦ V+1→V
+                :¦ End
+                :¦ real(20,0,0,0,8,8,X,Y)
+                :¦ X+8(K=26)→X
+                :¦ X-8(K=24)→X
+                :¦ Y+8(K=34)→Y
+                :¦ Y-8(K=25)→Y
+                :¦ X+(X=‾8)G8→X
+                :¦ X-(X=G8)G8→X
+                :¦ Y+(Y=‾8)H8→Y
+                :¦ Y-(Y=H8)H8→Y
+                :¦ If K>50:Then
+                :¦ ¦ (K-(int(K/10)*10))8-8→X
+                :¦ ¦ int(K/10)8-40→Y
+                :¦ End
+                :¦ A+3(K=42)→A
+                :¦ If K=21E
+                :¦ real(20,0,0,0,8,8,X,Y
+                :¦ If K=41:real(20,0,24,0,8,8,X+2,Y+1
+                :¦ If K=31:Then
+                :¦ ¦ If [A]((Y+8)/8,(X+8)/8)≠11 and [A]((Y+8)/8,(X+8)/8)≠12:Then
+                :¦ ¦ ¦ real(20,0,16,0,8,8,X+2,Y+1
+                :¦ ¦ ¦ If [A]((Y+8)/8,(X+8)/8)=10:Then:27→[A]((Y+8)/8,(X+8)/8)
+                :¦ ¦ ¦ ¦ 1+F→F
+                :¦ ¦ ¦ End
+                :¦ ¦ ¦ If [A]((Y+8)/8,(X+8)/8)=15:Then
+                :¦ ¦ ¦ ¦ 10→[A]((Y+8)/8,(X+8)/8
+                :¦ ¦ ¦ ¦ F-1→F
+                :¦ ¦ ¦ End
+                :¦ ¦ ¦ If [A]((Y+8)/8,(X+8)/8)=27:15→[A]((Y+8)/8,(X+8)/8
+                :¦ ¦ ¦ If [A]((Y+8)/8,(X+8)/8)≠10 and [A]((Y+8)/8,(X+8)/8)≠15 and [A]((Y+8)/8,(X+8)/8)≠213 and [A]((Y+8)/8,(X+8)/8)≠714
+                :¦ ¦ ¦ Then
+                :¦ ¦ ¦ ¦ 213→[A]((Y+8)/8,((X+8)/8)
+                :¦ ¦ ¦ ¦ 1+Q→Q
+                :¦ ¦ ¦ End
+                :¦ ¦ ¦ If [A]((Y+8)/8,(X+8)/8)=714:Then
+                :¦ ¦ ¦ ¦ [B]((Y+8)/8,(X+8)/8)→[A]((Y+8)/8,(X+8)/8)
+                :¦ ¦ ¦ ¦ Q-1→Q
+                :¦ ¦ ¦ End
+                :¦ ¦ ¦ If [A]((Y+8)/8,(X+8)/8)=213:714→[A]((Y+8)/8,(X+8)/8
+                :¦ ¦ ¦ (Q=0)(T=F)8→A
+                :¦ ¦ End:End
+                :¦ If K=21:Then
+                :¦ ¦ If [A]((Y+8)/8,(X+8)/8)=10 or [A]((Y+8)/8,(X+8)/8)=15
+                :¦ ¦ Then
+                :¦ ¦ ¦ 8→A
+                :¦ ¦ ¦ real(20,0,0,0,8,8,X,Y
+                :¦ ¦ ¦ Text(Y+1,X+1,"*
+                :¦ ¦ End
+                :¦ ¦ If [A]((Y+8)/8,(X+8)/8)≠11 and [A]((Y+8)/8,(X+8)/8)≠10 and [A]((Y+8)/8,(X+8)/8)≠12 and [A]((Y+8)/8,(X+8)/8)≠15
+                :¦ ¦ Then
+                :¦ ¦ ¦ If [B]((Y+8)/8,(X+8)/8)≠0 or ∟θMINE(10)≠27
+                :¦ ¦ ¦ Text(Y+1,X+2,[B]((Y+8)/8,(X+8)/8)
+                :¦ ¦ ¦ If [A]((Y+8)/8,(X+8)/8)=714:Q-1→Q
+                :¦ ¦ ¦ 11→[A]((Y+8)/8,(X+8)/8)
+                :¦ ¦ ¦ L+1→L
+                :¦ ¦ ¦ (GH-T=L)8→A
+                :¦ ¦ End
+                :¦ ¦ (X+8)/8→J:(Y+8)/8→I
+                :¦ ¦ If ∟θMINE(10)=27:Then
+                :¦ ¦ ¦ 0→dim(L1
+                :¦ ¦ ¦ Lbl CH
+                :¦ ¦ ¦ If [B](I,J)=0 and [A](I,J)≠12:Then
+                :¦ ¦ ¦ ¦ 12→[A](I,J)
+                :¦ ¦ ¦ ¦ For(U,‾(I>1),(I<H)
+                    :¦ ¦ ¦ ¦ ¦ For(θ,‾(J>1),(J<G)
+                        :¦ ¦ ¦ ¦ ¦ ¦ If [A](I+U,J+θ)≠11 and [A](I+U,J+θ)≠12:Then:1+L→L:If K=21E:real(20,0,0,0,8,8,(J+θ)8-8,(I+U)8-8):End
+                        :¦ ¦ ¦ ¦ ¦ ¦ If [A](I+U,J+θ)≠12
+                        :¦ ¦ ¦ ¦ ¦ ¦ 11→[A](I+U,J+θ)
+                        :¦ ¦ ¦ ¦ ¦ ¦ If [A](I+U,J+θ)=714:Q-1→Q
+                        :¦ ¦ ¦ ¦ ¦ ¦ If [B](I+U,J+θ)≠0
+                        :¦ ¦ ¦ ¦ ¦ ¦ Text((I+U)8-8+1,((J+θ)8)-8+2,[B](I+U,J+θ)
+                        :¦ ¦ ¦ ¦ ¦ ¦ If [B](I+U,J+θ)=0 and [A](I+U,J+θ)≠12:Then
+                        :¦ ¦ ¦ ¦ ¦ ¦ ¦ 2+dim(L1)→dim(L1)
+                        :¦ ¦ ¦ ¦ ¦ ¦ ¦ I+U→L1(dim(L1)-1)
+                        :¦ ¦ ¦ ¦ ¦ ¦ ¦ J+θ→L1(dim(L1)
+                        :¦ ¦ ¦ ¦ ¦ ¦ End:End
+                        :¦ ¦ ¦ ¦ End:End
+                        :¦ ¦ ¦ If dim(L1)≠0
+                        :¦ ¦ ¦ Then
+                        :¦ ¦ ¦ ¦ L1(dim(L1)-1)→I
+                        :¦ ¦ ¦ ¦ L1(dim(L1))→J
+                        :¦ ¦ ¦ ¦ dim(L1)-2→dim(L1)
+                        :¦ ¦ ¦ ¦ Goto CH
+                        :¦ ¦ ¦ End:End
+                        :¦ End
+                        :¦ Goto A
+                        :End
+                        :If K=93:Then:Disp "   Configure!"," -------------- "," 1) Reset data"," 2) Set dimens"," 3) Adj ratio"," 4) Grid state"," 5) Auto flip"
+                        :¦ Output(8,1," 6) Back
+                        :¦ 0→K
+                        :¦ Repeat max(K={92,93,94,82,83,84
+                        :¦ ¦ getKey→K
+                        :¦ End
+                        :¦ If K=82:Then
+                        :¦ ¦ Disp ""," Grid type","---------"," 1) Normal"," 2) No grid"," 3) All grid"," 4) Inverse",""
+                        :¦ ¦ 0→K
+                        :¦ ¦ Repeat max(K={92,93,94,82
+                        :¦ ¦ ¦ getKey→K
+                        :¦ ¦ End
+                        :¦ ¦ If K=92:1→∟θMINE(9)
+                        :¦ ¦ If K=93:2→∟θMINE(9)
+                        :¦ ¦ If K=94:3→∟θMINE(9)
+                        :¦ ¦ If K=82:4→∟θMINE(9)
+                        :¦ ¦ Goto LL
+                        :¦ End
+                        :¦ If K=83:Then
+                        :¦ ¦ Disp "","","Auto-Reveal","tiles around","zeroes? It's","kinda slow...","  1) Alright!","  2) Not today"
+                        :¦ ¦ 0→K
+                        :¦ ¦ Repeat max(K={92,93
+                        :¦ ¦ ¦ getKey→K
+                        :¦ ¦ End
+                        :¦ ¦ If K=93:0→∟θMINE(10)
+                        :¦ ¦ If K=92:27→∟θMINE(10)
+                        :¦ ¦ 84→K
+                        :¦ End
+                        :¦ If K=84:Goto LL
+                        :¦ If K=94:Then
+                        :¦ ¦ ClrHome
+                        :¦ ¦ Output(3,1,"The default"
+                        :¦ ¦ Output(4,1,"seed is 7."
+                        :¦ ¦ Output(5,1,"The seed is"
+                        :¦ ¦ Output(6,1,"the max value,"
+                        :¦ ¦ Output(7,9,"I%
+                        :¦ ¦ Output(7,1,"so 1/7=14"
+                        :¦ ¦ Output(8,9,"(mines)
+                        :¦ ¦ Input "Seed? ",Str1
+                        :¦ ¦ int(expr(Str1))→R
+                        :¦ ¦ If R>10:10→R
+                        :¦ ¦ If Str1="NO":Then
+                        :¦ ¦ ¦ ClrHome
+                        :¦ ¦ ¦ Output(3,1,"Not a fan of"
+                        :¦ ¦ ¦ Output(4,1,"random numbers"
+                        :¦ ¦ ¦ Output(5,1,"are we?
+                        :¦ ¦ ¦ Input "Number? ",R
+                        :¦ ¦ ¦ int(R)+100→R
+                        :¦ ¦ ¦ If R<100:101→R
+                        :¦ ¦ End
+                        :¦ ¦ R→∟θMINE(8)
+                        :¦ ¦ Goto LL
+                        :¦ End
+                        :¦ If K=93:Then
+                        :¦ ¦ Disp "",""
+                        :¦ ¦ Input "Width (≤12):",Str1
+                        :¦ ¦ Input "Height (≤8):",Str2
+                        :¦ ¦ If Str1≠"i" and Str2≠"i"
+                        :¦ ¦ Then
+                        :¦ ¦ ¦ expr(Str1)→G
+                        :¦ ¦ ¦ expr(Str2)→H
+                        :¦ ¦ ¦ If G<1 or G>12 or H<1 or H>8
+                        :¦ ¦ ¦ Then
+                        :¦ ¦ ¦ ¦ Disp "","Do you LISTEN","when I talk to","you?","","",""
+                        :¦ ¦ ¦ ¦ 0→K:0→G:0→H
+                        :¦ ¦ ¦ ¦ While K≠21 and K≠105
+                        :¦ ¦ ¦ ¦ ¦ getKey→K
+                        :¦ ¦ ¦ ¦ End:End
+                        :¦ ¦ End
+                        :¦ ¦ If Str1="i" and Str2="i":Then
+                        :¦ ¦ ¦ 500→G:500→H:End
+                        :¦ ¦ int(G→∟θMINE(6)
+                        :¦ ¦ int(H→∟θMINE(7)
+                        :¦ ¦ Goto LL
+                        :¦ End
+                        :¦ If K=92:Then
+                        :¦ ¦ Disp "","","","Reset all your","lovely data?","","   1) NOOO!"," DEL) Do it!",""
+                        :¦ ¦ 0→K
+                        :¦ ¦ While K≠92 and K≠23
+                        :¦ ¦ ¦ getKey→K
+                        :¦ ¦ End
+                        :¦ ¦ If K=23:Then
+                        :¦ ¦ ¦ DelVar ∟θMINE
+                        :¦ ¦ ¦ Disp "","The deed is"
+                        :¦ ¦ ¦ For(X,1,500
+                        :¦ ¦ ¦ ¦ "BL
+                        :¦ ¦ ¦ End
+                        :¦ ¦ ¦ Return
+                        :¦ ¦ End
+                        :¦ End
+                        :¦ Goto LL:End
+                        :
+                        :If K=94:Then
+                        :¦ Disp "","","","","","Programmed by","Ricky Ayoub","","vgmoosekid","   [at]gmail.com",""
+                        :¦ 0→K
+                        :¦ While K≠21 and K≠105
+                        :¦ ¦ getKey→K
+                        :¦ End
+                        :¦ Disp "","  HOW TO PLAY"," --------------","  2nd- Select","  ALPHA- Flag","  MATH- Maybe","  APPS- Pause"
+                        :¦ 0→K
+                        :¦ While K≠21 and K≠105
+                        :¦ ¦ getKey→K
+                        :¦ End
+                        :¦ Disp "","All mines need","to be flagged,","or all other","tiles flipped,","to finish the","round."
+                        :¦ 0→K
+                        :¦ While K≠21 and K≠105
+                        :¦ ¦ getKey→K
+                        :¦ End
+                        :End
+                        :Goto LL
